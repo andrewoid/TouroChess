@@ -15,10 +15,10 @@ public class BoardTest {
     {
         //given
         Board board = new Board();
-        Location blackPawnLocation = new Location(6, 5);
-        Location whitePawnLocation = new Location(1, 5);
-        Location blackKingLocation = new Location(7, 3);
-        Location whiteKingLocation = new Location(0, 3);
+        Location blackPawnLocation = new Location(1, 5);
+        Location whitePawnLocation = new Location(6, 5);
+        Location blackKingLocation = new Location(0, 3);
+        Location whiteKingLocation = new Location(7, 3);
         Location emptyLocation = new Location(5, 2);
 
         //when
