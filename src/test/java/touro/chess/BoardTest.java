@@ -4,8 +4,7 @@ package touro.chess;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
@@ -130,7 +129,7 @@ public class BoardTest {
         board.isLegal(move);
 
         //then
-        Assert.assertFalse(board.isLegal(move));
+        assertFalse(board.isLegal(move));
     }
 
     @Test
@@ -149,7 +148,7 @@ public class BoardTest {
         board.isLegal(move);
 
         //then
-        Assert.assertFalse(board.isLegal(move));
+        assertFalse(board.isLegal(move));
     }
 
     @Test
@@ -164,7 +163,7 @@ public class BoardTest {
         board.isLegal(move);
 
         //then
-        Assert.assertFalse(board.isLegal(move));
+        assertFalse(board.isLegal(move));
     }
 
     @Test
@@ -181,7 +180,51 @@ public class BoardTest {
         board.isLegal(move);
 
         //then
-        Assert.assertFalse(board.isLegal(move));
+        assertFalse(board.isLegal(move));
+    }
+
+    @Test
+    public void isCheckTrue()
+    {
+        //given
+        Board board = new Board();
+        board.setUpBoard();
+        KingPiece king = new KingPiece(new Location(2,2), PieceColor.Black);
+
+        //when
+        boolean answer = board.isCheck(king);
+
+        //then
+        assertTrue(answer);
+    }
+
+    @Test
+    public void isCheckFalse_EmptyBoard()
+    {
+        //given
+        Board board = new Board();
+        KingPiece king = new KingPiece(new Location(5,5), PieceColor.Black);
+
+        //when
+        boolean answer = board.isCheck(king);
+
+        //then
+        assertFalse(answer);
+    }
+
+    @Test
+    public void isCheckFalse_SetUpBoard()
+    {
+        //given
+        Board board = new Board();
+        board.setUpBoard();
+        KingPiece king = new KingPiece(new Location(7,3), PieceColor.Black);
+
+        //when
+        boolean answer = board.isCheck(king);
+
+        //then
+        assertFalse(answer);
     }
 
 }

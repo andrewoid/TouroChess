@@ -1,5 +1,6 @@
 package touro.chess;
 
+import javafx.scene.paint.Color;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -147,5 +148,35 @@ public class Board {
             }
         }
         return false;
+    }
+
+    /**
+     * method detects if it is a check for the king piece that is being passed
+     * @param king
+     * @return true or alse
+     */
+    public boolean isCheck(KingPiece king)
+    {
+        Location kingLocation = king.getLocation();
+        PieceColor kingColor = king.getColor();
+        for (int column = 0; column < squares.length; column++) {
+            for (int row = 0; row < squares[0].length; row++) {
+                Square thisSquare = squares[column][row];
+                if (thisSquare.hasPiece() && (thisSquare.getPiece().getColor() != kingColor)) {
+                    List<Move> moves = thisSquare.getPiece().getMoves();
+                    for (Move move : moves)
+                    {
+                        if (isLegal(move) &&
+                                move.getTo().getColumn() == kingLocation.getColumn() &&
+                                move.getTo().getRow() == kingLocation.getRow())
+                        {
+                            return true;
+                        }
+                    }
+
+                }
+            }
+        }
+      return false;
     }
 }
