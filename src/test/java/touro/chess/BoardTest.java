@@ -183,13 +183,18 @@ public class BoardTest {
         assertFalse(board.isLegal(move));
     }
 
+    /**
+     * This test creates a board with the pieces set up as the beginning of the game.
+     * It then calls the method to determine if the game is at a check
+     * It passes a new king to the method in a location that is threatened by the knight.
+     */
     @Test
     public void isCheckTrue()
     {
         //given
         Board board = new Board();
         board.setUpBoard();
-        KingPiece king = new KingPiece(new Location(2,2), PieceColor.Black);
+        KingPiece king = new KingPiece(new Location(2,2), PieceColor.White);
 
         //when
         boolean answer = board.isCheck(king);
@@ -218,7 +223,7 @@ public class BoardTest {
         //given
         Board board = new Board();
         board.setUpBoard();
-        KingPiece king = new KingPiece(new Location(7,3), PieceColor.Black);
+        KingPiece king = new KingPiece(new Location(7,3), PieceColor.White);
 
         //when
         boolean answer = board.isCheck(king);
