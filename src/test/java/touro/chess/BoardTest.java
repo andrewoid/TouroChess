@@ -4,8 +4,9 @@ package touro.chess;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import java.awt.*;
+
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
@@ -184,5 +185,62 @@ public class BoardTest {
         Assert.assertFalse(board.isLegal(move));
     }
 
+    @Test
+    public void makeMove()
+    {
+        //given
+        Board board = new Board();
+        board.setUpBoard();
+        Location from = new Location(6,3);
+        Location to = new Location(5,3);
+        Square originalSquare = board.getSquare(from);
+        Square destinationSquare = board.getSquare(to);
+        AbstractPiece piece = originalSquare.getPiece();
+
+        //when
+        board.makeMove(new Move(from, to, false, false));
+
+        //then
+        assertNull(originalSquare.getPiece());
+        assertEquals(destinationSquare.getPiece(), piece);
+        assertEquals(piece.getLocation().getColumn(), 3);
+        assertEquals(piece.getLocation().getRow(), 5);
+    }
+
+    @Test
+    public void copyBoard()
+    {
+        //given
+        Board board = new Board();
+        board.setUpBoard();
+
+        //when
+        Board copy = board.copyBoard();
+
+        //then
+        for(int column = 0; column < 8; column++)
+        {
+            for(int row = 0; row < 8; row++)
+            {
+                Location location = new Location(row, column);
+                Square originalSquare = board.getSquare(location);
+                Square copySquare = copy.getSquare(location);
+
+                AbstractPiece originalPiece = originalSquare.getPiece();
+                AbstractPiece copyPiece = copy.getPiece(location);
+                if(originalPiece != null)
+                {
+                    assertEquals(originalPiece.getClass(), copyPiece.getClass());
+                    assertEquals(originalPiece.getColor(), copyPiece.getColor());
+                    assertEquals(originalPiece.getLocation().getColumn(), copyPiece.getLocation().getColumn());
+                    assertEquals(originalPiece.getLocation().getRow(), copyPiece.getLocation().getRow());
+                }
+                else
+                {
+                    Assert.assertNull(copyPiece);
+                }
+            }
+        }
+    }
 }
 

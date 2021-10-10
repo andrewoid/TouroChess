@@ -148,4 +148,77 @@ public class Board {
         }
         return false;
     }
+
+    public void makeMove(Move move)
+    {
+        if(isLegal(move))
+        {
+            Location from = move.getFrom();
+            Location destination = move.getTo();
+            Square currentSquare = getSquare(from);
+            Square destinationSquare = getSquare(destination);
+            AbstractPiece currentPiece = currentSquare.getPiece();
+            AbstractPiece destinationPiece = destinationSquare.getPiece();
+
+            currentSquare.setPiece(null);
+            currentPiece.setLocation(destination);
+            destinationSquare.setPiece(currentPiece);
+            if(destinationPiece != null)
+            {
+                destinationPiece.setLocation(null);
+            }
+        }
+    }
+
+    public Board copyBoard()
+    {
+        Board copy = new Board();
+        for (int column = 0; column < squares.length; column++)
+        {
+            for (int row = 0; row < squares.length; row++)
+            {
+                Square thisSquare = squares[column][row];
+                AbstractPiece thisPiece = thisSquare.getPiece();
+
+                Square copySquare = copy.squares[column][row];
+                AbstractPiece copyPiece = determinePieceType(thisPiece);
+                copySquare.setPiece(copyPiece);
+            }
+        }
+        return copy;
+    }
+
+    private AbstractPiece determinePieceType(AbstractPiece piece)
+    {
+        if(piece != null)
+        {
+            Location location = piece.getLocation();
+            PieceColor color = piece.getColor();
+            if (piece instanceof BishopPiece)
+            {
+                return new BishopPiece(location, color);
+            }
+            else if (piece instanceof KingPiece)
+            {
+                return new KingPiece(location, color);
+            }
+            else if (piece instanceof KnightPiece)
+            {
+                return new KnightPiece(location, color);
+            }
+            else if (piece instanceof PawnPiece)
+            {
+                return new PawnPiece(location, color);
+            }
+            else if (piece instanceof RookPiece)
+            {
+                return new RookPiece(location, color);
+            }
+            else if (piece instanceof QueenPiece)
+            {
+                return new QueenPiece(location, color);
+            }
+        }
+        return null;
+    }
 }
