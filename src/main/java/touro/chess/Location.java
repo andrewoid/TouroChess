@@ -34,4 +34,5 @@ public class Location {
         //convert to ascii value so  97 = 'a', 98 = 'b', etc.
         return (char)(row + 97) + "" + column;
     }
+
 }

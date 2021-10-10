@@ -9,13 +9,14 @@ public class LocationTest {
 
     @Test
     public void toChessNotation() {
-        Location loc = new Location(0,4);
-        assertEquals( "a4", loc.toChessNotation());
 
-        Location loc2 = new Location(6,6);
-        assertEquals( "g6", loc2.toChessNotation());
+        Location loc = new Location(0, 5);
+        assertEquals("a5", loc.toChessNotation());
 
-
-
+        Location loc2 = new Location(6, 7);
+        assertEquals("g7", loc2.toChessNotation());
     }
 }
+
+
+        
