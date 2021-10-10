@@ -1,7 +1,7 @@
 Two player chess made by Touro students
 
 The Chess board of the program should look like this:
-![chess board](   )
+![chess board](https://cutechess.com/cutechess.png)
 
 You should be able to click on a piece and move it to a new square. 
 Possible moves should be highlighted.
