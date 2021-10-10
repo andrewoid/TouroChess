@@ -11,6 +11,12 @@ public class RookPiece extends AbstractPiece
     }
 
     @Override
+    public AbstractPiece copy()
+    {
+        return new RookPiece(this.getLocation(), this.getColor());
+    }
+
+    @Override
     public List<Move> getMoves()
     {
         List<Move> list = new ArrayList<>();

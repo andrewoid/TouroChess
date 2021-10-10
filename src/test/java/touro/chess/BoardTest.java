@@ -224,7 +224,6 @@ public class BoardTest {
             {
                 Location location = new Location(row, column);
                 Square originalSquare = board.getSquare(location);
-                Square copySquare = copy.getSquare(location);
 
                 AbstractPiece originalPiece = originalSquare.getPiece();
                 AbstractPiece copyPiece = copy.getPiece(location);

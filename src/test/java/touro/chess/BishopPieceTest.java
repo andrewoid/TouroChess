@@ -11,6 +11,22 @@ import static org.junit.Assert.*;
 public class BishopPieceTest
 {
     @Test
+    public void copy()
+    {
+        //given
+        Location location = new Location(3,4);
+        BishopPiece bishop = new BishopPiece(location, PieceColor.Black);
+
+        //when
+        BishopPiece copy = (BishopPiece) bishop.copy();
+
+        //then
+        assertEquals(bishop.getLocation().getColumn(), copy.getLocation().getColumn());
+        assertEquals(bishop.getLocation().getRow(), copy.getLocation().getRow());
+        assertEquals(bishop.getColor(), copy.getColor());
+    }
+
+    @Test
     public void getMoves()
     {
         //given

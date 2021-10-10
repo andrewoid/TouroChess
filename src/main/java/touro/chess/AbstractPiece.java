@@ -30,6 +30,11 @@ public abstract class AbstractPiece {
     }
 
     /**
+     * @return a copy of the piece.
+     */
+    public abstract AbstractPiece copy();
+
+    /**
      * @return a List of all valid moves that this piece can make from this position.
      */
     public abstract List<Move> getMoves();

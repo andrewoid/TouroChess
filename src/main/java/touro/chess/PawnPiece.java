@@ -15,6 +15,12 @@ public class PawnPiece extends AbstractPiece {
     }
 
     @Override
+    public AbstractPiece copy()
+    {
+        return new PawnPiece(this.getLocation(), this.getColor());
+    }
+
+    @Override
     public List<Move> getMoves() {
         Location location = super.getLocation();
         int row = location.getRow();

@@ -5,9 +5,27 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class KnightPieceTest {
+
+    @Test
+    public void copy()
+    {
+        //given
+        Location location = new Location(3,4);
+        KnightPiece knight = new KnightPiece(location, PieceColor.Black);
+
+        //when
+        KnightPiece copy = (KnightPiece)knight.copy();
+
+        //then
+        assertEquals(knight.getLocation().getColumn(), copy.getLocation().getColumn());
+        assertEquals(knight.getLocation().getRow(), copy.getLocation().getRow());
+        assertEquals(knight.getColor(), copy.getColor());
+    }
+
     @Test
     public void getMoves(){
         //given

@@ -181,44 +181,10 @@ public class Board {
                 AbstractPiece thisPiece = thisSquare.getPiece();
 
                 Square copySquare = copy.squares[column][row];
-                AbstractPiece copyPiece = determinePieceType(thisPiece);
+                AbstractPiece copyPiece = thisPiece == null ? null : thisPiece.copy();
                 copySquare.setPiece(copyPiece);
             }
         }
         return copy;
-    }
-
-    private AbstractPiece determinePieceType(AbstractPiece piece)
-    {
-        if(piece != null)
-        {
-            Location location = piece.getLocation();
-            PieceColor color = piece.getColor();
-            if (piece instanceof BishopPiece)
-            {
-                return new BishopPiece(location, color);
-            }
-            else if (piece instanceof KingPiece)
-            {
-                return new KingPiece(location, color);
-            }
-            else if (piece instanceof KnightPiece)
-            {
-                return new KnightPiece(location, color);
-            }
-            else if (piece instanceof PawnPiece)
-            {
-                return new PawnPiece(location, color);
-            }
-            else if (piece instanceof RookPiece)
-            {
-                return new RookPiece(location, color);
-            }
-            else if (piece instanceof QueenPiece)
-            {
-                return new QueenPiece(location, color);
-            }
-        }
-        return null;
     }
 }

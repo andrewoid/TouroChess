@@ -10,6 +10,12 @@ public class KingPiece extends AbstractPiece{
     }
 
     @Override
+    public AbstractPiece copy()
+    {
+        return new KingPiece(this.getLocation(), this.getColor());
+    }
+
+    @Override
     public List<Move> getMoves() {
         Location currentLocation = getLocation();
         int currentRow = currentLocation.getRow();
