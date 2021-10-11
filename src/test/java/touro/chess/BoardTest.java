@@ -203,8 +203,6 @@ public class BoardTest {
         //then
         assertNull(originalSquare.getPiece());
         assertEquals(destinationSquare.getPiece(), piece);
-        assertEquals(piece.getLocation().getColumn(), 3);
-        assertEquals(piece.getLocation().getRow(), 5);
     }
 
     @Test
@@ -229,10 +227,7 @@ public class BoardTest {
                 AbstractPiece copyPiece = copy.getPiece(location);
                 if(originalPiece != null)
                 {
-                    assertEquals(originalPiece.getClass(), copyPiece.getClass());
-                    assertEquals(originalPiece.getColor(), copyPiece.getColor());
-                    assertEquals(originalPiece.getLocation().getColumn(), copyPiece.getLocation().getColumn());
-                    assertEquals(originalPiece.getLocation().getRow(), copyPiece.getLocation().getRow());
+                    assertEquals(originalPiece, copyPiece);
                 }
                 else
                 {
