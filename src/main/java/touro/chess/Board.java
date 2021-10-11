@@ -2,7 +2,9 @@ package touro.chess;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static touro.chess.PieceColor.Black;
 import static touro.chess.PieceColor.White;
@@ -186,5 +188,34 @@ public class Board {
             }
         }
         return copy;
+    }
+
+    public boolean isCheckmate(PieceColor color)
+    {
+        List<Move> moves = null;
+        for (int column = 0; column < squares.length; column++)
+        {
+            for (int row = 0; row < squares.length; row++)
+            {
+                AbstractPiece currentPiece = squares[column][row].getPiece();
+                if(currentPiece.getColor() == color)
+                {
+                    moves.addAll(currentPiece.getMoves());
+                }
+            }
+        }
+        for(Move move: moves)
+        {
+            Board tempBoard = this.copyBoard();
+            if(isLegal(move))
+            {
+                tempBoard.makeMove(move);
+                if(!tempBoard.isCheck())
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

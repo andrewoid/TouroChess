@@ -241,5 +241,42 @@ public class BoardTest {
             }
         }
     }
+
+        @Test
+    public void isCheckmate_true()
+    {
+        //given
+        Board board = new Board();
+
+        Location kingsLocation = new Location(7,4);
+        KingPiece king = new KingPiece(kingsLocation, PieceColor.Black);
+        board.setPiece(kingsLocation, king);
+
+        Location queensLocation = new Location(7,3);
+        QueenPiece queen = new QueenPiece(queensLocation, PieceColor.White);
+        board.setPiece(queensLocation, queen);
+
+        //when
+        boolean checkmate = board.isCheckmate(PieceColor.Black);
+
+        //then
+        Assert.assertTrue(checkmate);
+    }
+
+    @Test
+    public void isCheckmate_false()
+    {
+        //given
+        Board board = new Board();
+        board.setUpBoard();
+
+        //when
+        boolean checkmateBlack = board.isCheckmate(PieceColor.Black);
+        boolean checkmateWhite = board.isCheckmate(PieceColor.White);
+
+        //then
+        Assert.assertFalse(checkmateBlack);
+        Assert.assertFalse(checkmateWhite);
+    }
 }
 
