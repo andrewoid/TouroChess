@@ -2,6 +2,7 @@ package touro.chess;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -177,7 +178,7 @@ public class Board {
         Board copy = new Board();
         for (int column = 0; column < squares.length; column++)
         {
-            for (int row = 0; row < squares.length; row++)
+            for (int row = 0; row < squares[column].length; row++)
             {
                 Square thisSquare = squares[column][row];
                 AbstractPiece thisPiece = thisSquare.getPiece();
@@ -192,13 +193,13 @@ public class Board {
 
     public boolean isCheckmate(PieceColor color)
     {
-        List<Move> moves = null;
+        List<Move> moves = new ArrayList<>();
         for (int column = 0; column < squares.length; column++)
         {
-            for (int row = 0; row < squares.length; row++)
+            for (int row = 0; row < squares[column].length; row++)
             {
                 AbstractPiece currentPiece = squares[column][row].getPiece();
-                if(currentPiece.getColor() == color)
+                if(currentPiece != null && currentPiece.getColor() == color)
                 {
                     moves.addAll(currentPiece.getMoves());
                 }
@@ -217,5 +218,10 @@ public class Board {
             }
         }
         return true;
+    }
+
+    private boolean isCheck()
+    {
+        return false;
     }
 }
