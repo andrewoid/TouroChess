@@ -5,6 +5,8 @@ import java.util.List;
 
 public class RookPiece extends AbstractPiece
 {
+    private final int score = 5;
+
     public RookPiece(Location location, PieceColor color)
     {
         super(location, color);

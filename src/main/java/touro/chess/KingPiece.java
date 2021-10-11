@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class KingPiece extends AbstractPiece{
+
     public KingPiece(Location location, PieceColor color) {
         super(location, color);
     }
