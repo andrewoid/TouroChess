@@ -2,10 +2,7 @@ package touro.chess;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static touro.chess.PieceColor.Black;
 import static touro.chess.PieceColor.White;
@@ -152,6 +149,27 @@ public class Board {
         return false;
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o)
+        {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass())
+        {
+            return false;
+        }
+        Board board = (Board)o;
+        return Arrays.deepEquals(this.squares, board.squares);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Arrays.hashCode(squares);
+    }
+
     public void makeMove(Move move)
     {
         if(isLegal(move))
@@ -220,7 +238,7 @@ public class Board {
         return true;
     }
 
-    private boolean isCheck()
+    public boolean isCheck()
     {
         return false;
     }

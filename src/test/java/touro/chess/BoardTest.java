@@ -43,10 +43,6 @@ public class BoardTest {
         assertNull(empty);
     }
 
-
-
-
-
     @Test
     public void isLegal_validVerticalMove(){
         //given
@@ -186,6 +182,39 @@ public class BoardTest {
     }
 
     @Test
+    public void equals_true()
+    {
+        //given
+        Board board = new Board();
+        board.setUpBoard();
+        Board board2 = new Board();
+        board2.setUpBoard();
+
+        //when
+        boolean same = board.equals(board);
+        boolean equals = board.equals(board2);
+
+        //then
+        assertTrue(same);
+        assertTrue(equals);
+    }
+
+    @Test
+    public void equals_false()
+    {
+        //given
+        Board board = new Board();
+        board.setUpBoard();
+        Board board2 = new Board();
+
+        //when
+        boolean equals = board.equals(board2);
+
+        //then
+        assertFalse(equals);
+    }
+
+    @Test
     public void makeMove()
     {
         //given
@@ -216,25 +245,7 @@ public class BoardTest {
         Board copy = board.copyBoard();
 
         //then
-        for(int column = 0; column < 8; column++)
-        {
-            for(int row = 0; row < 8; row++)
-            {
-                Location location = new Location(row, column);
-                Square originalSquare = board.getSquare(location);
-
-                AbstractPiece originalPiece = originalSquare.getPiece();
-                AbstractPiece copyPiece = copy.getPiece(location);
-                if(originalPiece != null)
-                {
-                    assertEquals(originalPiece, copyPiece);
-                }
-                else
-                {
-                    Assert.assertNull(copyPiece);
-                }
-            }
-        }
+        assertTrue(board.equals(copy));
     }
 
         @Test
