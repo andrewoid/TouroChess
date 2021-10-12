@@ -189,9 +189,9 @@ public class BoardTest {
         //given
         Board board = new Board();
         //when
-        String message = board.whoIsWinning();
+        PieceColor winner = board.whoIsWinning();
         //then
-        assertEquals(message, "tie");
+        assertEquals(winner, null);
     }
 
     @Test
@@ -202,9 +202,9 @@ public class BoardTest {
         PawnPiece pawn = new PawnPiece(location, PieceColor.Black);
         board.setPiece(location, pawn);
         //when
-        String message = board.whoIsWinning();
+        PieceColor winner = board.whoIsWinning();
         //then
-        assertEquals(message, "black player");
+        assertEquals(winner, PieceColor.Black);
     }
     @Test
     public void whoIsWinning_whiteWins(){
@@ -214,9 +214,9 @@ public class BoardTest {
         PawnPiece pawn = new PawnPiece(location, PieceColor.White);
         board.setPiece(location, pawn);
         //when
-        String message = board.whoIsWinning();
+        PieceColor winner = board.whoIsWinning();
         //then
-        assertEquals(message, "white player");
+        assertEquals(winner, PieceColor.White);
     }
 
 }

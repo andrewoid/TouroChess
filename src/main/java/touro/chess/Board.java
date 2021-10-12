@@ -154,7 +154,7 @@ public class Board {
 
 
 
-    public String whoIsWinning(){
+    public PieceColor whoIsWinning(){
         // go through every square, see which color it is and add the amount of legal moves to its total
         int blackPoints = 0;
         int whitePoints = 0;
@@ -182,7 +182,7 @@ public class Board {
                }
             }
         }
-        if(whitePoints == blackPoints) return "tie";
-        return whitePoints > blackPoints ? "white player" : "black player";
+        if(whitePoints == blackPoints) return null;
+        return whitePoints > blackPoints ? White : Black;
     }
 }
