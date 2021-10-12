@@ -24,7 +24,7 @@ public class ChessLogTest {
         // then
         assertEquals(chessLog.getBlackMoves().get(0), "K");
         Assert.assertTrue(chessLog.getWhiteMoves().isEmpty());
-        Assert.assertTrue(chessLog.getBlackMoves().size() == 1);
+        Assert.assertEquals(chessLog.getBlackMoves().size(),  1);
     }
-    
+
 }
