@@ -67,14 +67,5 @@ public class UndoManager {
             AbstractPiece capturedPiece = latestMoveInfo.getCapturedPiece();
             board.setPiece(latestMove.getTo(),capturedPiece);
         }
-
-        //board.setPiece(latestMoveInfo.getMove().getFrom(), latestPiece); //set piece back to where it came from
-        //latestPiece.setLocation(latestMoveInfo.getMove().getFrom()); //update piece's location
-        //more lines, clearer code?
-        //return captured pieces to board
-        //if (latestMoveInfo.getCapturedPiece() != null){
-          //  AbstractPiece capturedPiece = latestMoveInfo.getCapturedPiece();
-            //board.setPiece(latestMoveInfo.getMove().getTo(), capturedPiece);
     }
-
 }
