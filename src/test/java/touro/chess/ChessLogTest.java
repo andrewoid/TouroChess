@@ -22,7 +22,7 @@ public class ChessLogTest {
         chessLog.addMoveToLog(move, Piece.King, king.getColor());
 
         // then
-        assertEquals(chessLog.getBlackMoves().get(0), "K");
+        assertEquals(chessLog.getBlackMoves().get(0), "Kf4");
         Assert.assertTrue(chessLog.getWhiteMoves().isEmpty());
         Assert.assertEquals(chessLog.getBlackMoves().size(),  1);
     }

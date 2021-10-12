@@ -27,26 +27,9 @@ public class ChessLog {
     }
 
     private String moveAsString(Move move, Piece piece){
-        String returnString = "";
-        switch (piece.toString()){
-            case "Bishop":
-                returnString += 'B';
-                break;
-            case "King":
-                returnString += 'K';
-                break;
-            case "Knight":
-                returnString += 'N';
-                break;
-            case "Pawn":
-                break;
-            case "Queen":
-                returnString += 'Q';
-                break;
-            case "Rook":
-                returnString += 'R';
-                break;
-        }
+        String returnString = piece.toString().equals("Bishop") ? "B" : piece.toString().equals("King") ? "K" :
+                piece.toString().equals("Knight") ? "N" : piece.toString().equals("Rook") ? "R" : piece.toString().equals("Queen") ? "Q" : "";
+        returnString += move.getTo().toChessNotation();
         return returnString;
     }
 

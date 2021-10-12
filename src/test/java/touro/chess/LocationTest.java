@@ -15,7 +15,5 @@ public class LocationTest {
         Location loc2 = new Location(6,6);
         assertEquals( "g6", loc2.toChessNotation());
 
-
-
     }
 }
