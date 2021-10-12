@@ -3,69 +3,50 @@ package touro.chess;
 import java.util.Stack;
 /*
     TO DO:
-    clean code
     fix naming?
     private class within public?
     testing issues
     other scenarios? if a piece is changed? don't know chess well enough...
 
  */
-public class UndoManager { //don't like naming
-    Board board;
-    Stack<MoveInfo> executedMoves;
-    private class MoveInfo{
-        private Move move;
-        private boolean pieceCaptured;
-        private AbstractPiece capturedPiece;
-        private MoveInfo(Move move, boolean pieceCaptured, AbstractPiece capturedPiece){
-            this.move = move;
-            this.pieceCaptured = pieceCaptured;
-            this.capturedPiece = capturedPiece;
-        }
-        //getters and setters?
-        /**
-        public Move getMove (){
-            return this.move;
-
-        }
-        public boolean getPieceCaptured (){
-            return this.pieceCaptured;
-
-        }
-        public AbstractPiece getCapturedPiece (){
-            return this.capturedPiece;
-
-        }
-         **/
-    }
-
+public class UndoManager {
+    private Board board;
+    private Stack<MoveInfo> executedMoves;
     public UndoManager (Board currentBoard ){
         board = currentBoard;
         executedMoves = new Stack<>();
     }
+    public Board getBoard(){
+        return board;
+    }
+    public Stack<MoveInfo> getExecutedMoves(){
+        return executedMoves;
+    }
 
-    /**
-     * method to track move played
-     * called when last move did not capture a piece
-     * creates MoveInfo object and adds to stack
-     * @param lastMove
-     * @param pieceCaptured
-     */
-    public void trackMove(Move lastMove, boolean pieceCaptured){
-        MoveInfo latestMoveInfo = new MoveInfo(lastMove, pieceCaptured, null);
-        executedMoves.add(latestMoveInfo);
+    private class MoveInfo{
+        private Move move;
+        private AbstractPiece capturedPiece;
+        private MoveInfo(Move move, AbstractPiece capturedPiece){
+            this.move = move;
+            this.capturedPiece = capturedPiece;
+        }
+        //getters and setters?
+        public Move getMove(){
+            return this.move;
+        }
+        public AbstractPiece getCapturedPiece(){
+            return this.capturedPiece;
+        }
     }
 
     /**
-     * overloaded method to track move played
-     * called when last move captured a piece
+     * method to track move played
      * creates MoveInfo object and adds to stack
      * @param lastMove
-     * @param pieceCaptured
      * @param capturedPiece
      */
-    public void trackMove(Move lastMove, boolean pieceCaptured, AbstractPiece capturedPiece) {
-        MoveInfo latestMoveInfo = new MoveInfo(lastMove, pieceCaptured, capturedPiece);
+    public void trackMove(Move lastMove, AbstractPiece capturedPiece) {
+        MoveInfo latestMoveInfo = new MoveInfo(lastMove,capturedPiece);
         executedMoves.add(latestMoveInfo);
     }
 
@@ -77,12 +58,12 @@ public class UndoManager { //don't like naming
     public void undoMove (){
         MoveInfo latestMoveInfo = executedMoves.pop();
         AbstractPiece latestPiece = board.getPiece(latestMoveInfo.move.getTo()); //get the last piece moved
-        board.setPiece(latestMoveInfo.move.getFrom(), latestPiece); //set that piece back to where it came from
+        board.setPiece(latestMoveInfo.move.getFrom(), latestPiece); //set piece back to where it came from
+        latestPiece.setLocation(latestMoveInfo.move.getFrom()); //update piece's location
         //return captured pieces to board
-        if (latestMoveInfo.pieceCaptured){
+        if (latestMoveInfo.capturedPiece != null){
             AbstractPiece capturedPiece = latestMoveInfo.capturedPiece;
-            board.setPiece(capturedPiece.getLocation(), capturedPiece);
-            //when a piece is taken off the board, does it still keep its last coordinates?
+            board.setPiece(latestMoveInfo.move.getTo(), capturedPiece);
         }
     }
 
