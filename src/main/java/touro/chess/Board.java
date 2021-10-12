@@ -1,7 +1,9 @@
 package touro.chess;
 
+import javafx.scene.control.Label;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static touro.chess.PieceColor.Black;
@@ -94,6 +96,7 @@ public class Board {
     }
 
 
+
     /**
      * Verify that a Move is legal on this Board.
      *
@@ -147,5 +150,39 @@ public class Board {
             }
         }
         return false;
+    }
+
+
+
+    public String whoIsWinning(){
+        // go through every square, see which color it is and add the amount of legal moves to its total
+        int blackPoints = 0;
+        int whitePoints = 0;
+
+        for (int column = 0; column < COLUMNS; column++) {
+            for (int row = 0; row < ROWS; row++) {
+               AbstractPiece piece =  squares[column][row].getPiece();
+               if(piece != null){
+                   if(piece.getColor() == Black){
+                       List<Move> blackMoves = piece.getMoves();
+                       for(Move move : blackMoves){
+                           if(isLegal(move)){
+                               blackPoints++;
+                           }
+                       }
+                   }
+                   else{
+                       List<Move> whiteMoves = piece.getMoves();
+                       for(Move move : whiteMoves){
+                           if(isLegal(move)){
+                               whitePoints++;
+                           }
+                       }
+                   }
+               }
+            }
+        }
+        if(whitePoints == blackPoints) return "tie";
+        return whitePoints > blackPoints ? "white player" : "black player";
     }
 }
