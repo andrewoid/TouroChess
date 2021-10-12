@@ -10,15 +10,16 @@ public class ChessLog {
     private ArrayList <String> whiteMoves;
 
     public ChessLog () {
-        moveNumbers = new ArrayList<Integer>();
-        blackMoves = new ArrayList<String>();
-        whiteMoves = new ArrayList<String>();
+        moveNumbers = new ArrayList<>();
+        blackMoves = new ArrayList<>();
+        whiteMoves = new ArrayList<>();
     }
 
     public void addMoveToLog(Move move, Piece piece, PieceColor pieceColor){
         switch (pieceColor){
             case White:
                 whiteMoves.add(moveAsString(move, piece));
+                updateMoveNumber();
                 break;
             case Black:
                 blackMoves.add(moveAsString(move, piece));
@@ -41,4 +42,11 @@ public class ChessLog {
         return this.whiteMoves;
     }
 
+    public List<Integer> getMoveNumbers(){
+        return this.moveNumbers;
+    }
+
+    private void updateMoveNumber() {
+        moveNumbers.add(moveNumbers.size() + 1);
+    }
 }
