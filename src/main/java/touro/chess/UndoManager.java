@@ -1,5 +1,4 @@
 package touro.chess;
-
 import java.util.Stack;
 /*
     TO DO:
@@ -12,18 +11,20 @@ import java.util.Stack;
 public class UndoManager {
     private Board board;
     private Stack<MoveInfo> executedMoves;
+    private MoveInfo latestMoveInfo; //better like this or go back?
+
     public UndoManager (Board currentBoard ){
         board = currentBoard;
         executedMoves = new Stack<>();
     }
-    public Board getBoard(){
+    public Board getBoard(){ //remove?
         return board;
     }
     public Stack<MoveInfo> getExecutedMoves(){
         return executedMoves;
     }
 
-    private class MoveInfo{
+   /* public class MoveInfo{  //public class within a class?
         private Move move;
         private AbstractPiece capturedPiece;
         private MoveInfo(Move move, AbstractPiece capturedPiece){
@@ -38,6 +39,7 @@ public class UndoManager {
             return this.capturedPiece;
         }
     }
+    */
 
     /**
      * method to track move played
@@ -46,7 +48,7 @@ public class UndoManager {
      * @param capturedPiece
      */
     public void trackMove(Move lastMove, AbstractPiece capturedPiece) {
-        MoveInfo latestMoveInfo = new MoveInfo(lastMove,capturedPiece);
+        latestMoveInfo = new MoveInfo(lastMove,capturedPiece);
         executedMoves.add(latestMoveInfo);
     }
 
@@ -56,15 +58,23 @@ public class UndoManager {
      * returns captured piece to the board
      */
     public void undoMove (){
-        MoveInfo latestMoveInfo = executedMoves.pop();
-        AbstractPiece latestPiece = board.getPiece(latestMoveInfo.move.getTo()); //get the last piece moved
-        board.setPiece(latestMoveInfo.move.getFrom(), latestPiece); //set piece back to where it came from
-        latestPiece.setLocation(latestMoveInfo.move.getFrom()); //update piece's location
-        //return captured pieces to board
-        if (latestMoveInfo.capturedPiece != null){
-            AbstractPiece capturedPiece = latestMoveInfo.capturedPiece;
-            board.setPiece(latestMoveInfo.move.getTo(), capturedPiece);
+        latestMoveInfo = executedMoves.pop();
+        AbstractPiece latestPiece = board.getPiece(latestMoveInfo.getMove().getTo());//get the last piece moved
+        Move latestMove = latestMoveInfo.getMove();
+        board.setPiece(latestMove.getFrom(),latestPiece);
+        latestPiece.setLocation(latestMove.getFrom());
+        if (latestMoveInfo.getCapturedPiece() != null){
+            AbstractPiece capturedPiece = latestMoveInfo.getCapturedPiece();
+            board.setPiece(latestMove.getTo(),capturedPiece);
         }
+
+        //board.setPiece(latestMoveInfo.getMove().getFrom(), latestPiece); //set piece back to where it came from
+        //latestPiece.setLocation(latestMoveInfo.getMove().getFrom()); //update piece's location
+        //more lines, clearer code?
+        //return captured pieces to board
+        //if (latestMoveInfo.getCapturedPiece() != null){
+          //  AbstractPiece capturedPiece = latestMoveInfo.getCapturedPiece();
+            //board.setPiece(latestMoveInfo.getMove().getTo(), capturedPiece);
     }
 
 }
