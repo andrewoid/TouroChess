@@ -12,10 +12,14 @@ This is a guide for [Chess for beginners](https://www.wikihow.com/Play-Chess-for
 
 Andrew Schwimmer
 Nina Bildirici
+Tali Benedek
 Leah Wolfish
+<<<<<<< HEAD
 Sara Croitoru
 Hadassah Rosenfeld
 Tali Benedek
 Jennifer Gerstle
 Ahuva Cheifetz
 
+=======
+>>>>>>> 33a349ce08f271fc4954d32c15908e312ea22900
