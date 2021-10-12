@@ -11,6 +11,7 @@ public class ChessController {
     ArrayList<Label> squares;
 
     public void initialize() {
+        squares = new ArrayList<>();
         setupInitialBoard();
     }
 
@@ -42,17 +43,24 @@ public class ChessController {
         squares.get(63).getStyleClass().add("WhiteRook");
     }
 
-    private void updateImage(PieceColor color, int originSquare, int destinationSquare, Piece piece){
+    public void updateImage(PieceColor color, int originSquare, int destinationSquare, Piece piece){
         String movingPiece = color.toString() + "" + piece.toString();
         squares.get(originSquare).getStyleClass().remove(movingPiece);
         squares.get(originSquare).getStyleClass().add("Empty");
         squares.get(destinationSquare).getStyleClass().removeAll();
         squares.get(destinationSquare).getStyleClass().add(movingPiece);
     }
-    private void updateMoveImage(PieceColor color, Move move, Piece piece){
-        int numOriginSquare = move.getFrom().getRow() * 8 + move.getFrom().getColumn();
-        int numDestinationSSquare = move.getTo().getRow() * 8 + move.getTo().getColumn();
-        updateImage(color, numOriginSquare, numDestinationSSquare, piece);
+
+    public int convertOrigin (Move move){
+        return move.getFrom().getRow() * 8 + move.getFrom().getColumn();
+    }
+
+    public int convertDestination (Move move){
+        return move.getTo().getRow() * 8 + move.getTo().getColumn();
+
+    }
+    public void updateMoveImage(PieceColor color, Move move, Piece piece){
+        updateImage(color, convertOrigin(move), convertDestination(move), piece);
     }
 
 //private void updateImage(PieceColor color, Move move, Piece piece){
@@ -66,7 +74,7 @@ public class ChessController {
 //        squares.get(numDestinationSSquare).getStyleClass().add(movingPiece);
 //}
 
-    private enum Piece {
+    public enum Piece {
         Rook,
         Knight,
         Bishop,
