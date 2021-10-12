@@ -4,8 +4,6 @@ package touro.chess;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.awt.*;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.doReturn;
@@ -188,27 +186,36 @@ public class BoardTest {
 
     @Test
     public void whoIsWinning_tie(){
+        //given
         Board board = new Board();
+        //when
         String message = board.whoIsWinning();
+        //then
         assertEquals(message, "tie");
     }
 
     @Test
     public void whoIsWinning_blackWins(){
+        //given
         Board board = new Board();
         Location location = new Location(3, 5);
         PawnPiece pawn = new PawnPiece(location, PieceColor.Black);
         board.setPiece(location, pawn);
+        //when
         String message = board.whoIsWinning();
+        //then
         assertEquals(message, "black player");
     }
     @Test
     public void whoIsWinning_whiteWins(){
+        //given
         Board board = new Board();
         Location location = new Location(3, 5);
         PawnPiece pawn = new PawnPiece(location, PieceColor.White);
         board.setPiece(location, pawn);
+        //when
         String message = board.whoIsWinning();
+        //then
         assertEquals(message, "white player");
     }
 
