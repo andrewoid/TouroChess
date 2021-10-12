@@ -14,8 +14,5 @@ Andrew Schwimmer
 Hadassah Rosenfeld
 Tali Benedek
 Leah Wolfish
-<<<<<<< HEAD
 Eliana Gewirtz
-  
-=======
->>>>>>> 8c54da06721748670172d422c64cb34a0bbae02e
+
