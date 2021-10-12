@@ -2,6 +2,8 @@ package touro.chess;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 import java.util.ArrayList;
 
@@ -9,6 +11,10 @@ public class ChessController {
 
     @FXML
     ArrayList<Label> squares;
+    @FXML
+    TableView tableView;
+    @FXML
+    TableColumn numberMove, whiteMove, blackMove;
 
     public void initialize() {
         setupInitialBoard();
@@ -50,7 +56,6 @@ public class ChessController {
         squares.get(destinationSquare).getStyleClass().add(movingPiece);
 
     }
-
     private enum Piece {
         Rook,
         Knight,
