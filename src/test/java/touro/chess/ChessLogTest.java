@@ -23,8 +23,8 @@ public class ChessLogTest {
 
         // then
         assertEquals(chessLog.getBlackMoves().get(0), "Kf4");
-        Assert.assertTrue(chessLog.getWhiteMoves().isEmpty());
-        Assert.assertTrue(chessLog.getBlackMoves().size() == 1);
+        assertEquals(chessLog.getWhiteMoves().size(), 0);
+        assertEquals(chessLog.getBlackMoves().size(), 1);
     }
 
     @Test
@@ -40,9 +40,9 @@ public class ChessLogTest {
 
         // then
         assertEquals(chessLog.getWhiteMoves().get(0), "e5");
-        Assert.assertTrue(chessLog.getBlackMoves().isEmpty());
-        Assert.assertEquals(chessLog.getWhiteMoves().size(),  1);
-        Assert.assertTrue(chessLog.getMoveNumbers().size() == 1);
+        assertEquals(chessLog.getBlackMoves().size(), 0);
+        assertEquals(chessLog.getWhiteMoves().size(),  1);
+        assertEquals(chessLog.getMoveNumbers().size(), 1);
     }
 
     @Test
@@ -60,8 +60,8 @@ public class ChessLogTest {
         chessLog.addMoveToLog(kingMove, Piece.King, king.getColor());
 
         // then
-        Assert.assertTrue(chessLog.getBlackMoves().size() == 1);
-        Assert.assertTrue(chessLog.getWhiteMoves().size() == 1);
-        Assert.assertTrue(chessLog.getMoveNumbers().size() == 1);
+        assertEquals(chessLog.getBlackMoves().size(),1);
+        assertEquals(chessLog.getWhiteMoves().size(),1);
+        assertEquals(chessLog.getMoveNumbers().size(), 1);
     }
 }
