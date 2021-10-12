@@ -1,6 +1,5 @@
 package touro.chess;
 
-import javafx.scene.paint.Color;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
