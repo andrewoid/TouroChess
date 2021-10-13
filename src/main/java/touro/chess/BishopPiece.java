@@ -5,12 +5,13 @@ import java.util.List;
 
 public class BishopPiece extends AbstractPiece
 {
-    private final int score = 3;
 
     public BishopPiece(Location location, PieceColor color)
     {
-        super(location, color);
+        super(location, color, 3);
     }
+
+    public int getScore(){return 3;}
 
     @Override
     public List<Move> getMoves()

@@ -9,12 +9,13 @@ public abstract class AbstractPiece {
 
     private Location location;
     private final PieceColor color;
-
+    private final int score;
     // How should we represent the piece's image?
 
-    public AbstractPiece(Location location, PieceColor color) {
+    public AbstractPiece(Location location, PieceColor color, int score) {
         this.location = location;
         this.color = color;
+        this.score = score;
     }
 
     public Location getLocation() {
@@ -28,6 +29,8 @@ public abstract class AbstractPiece {
     public PieceColor getColor() {
         return color;
     }
+
+    public int getScore(){return score;}
 
     /**
      * @return a List of all valid moves that this piece can make from this position.

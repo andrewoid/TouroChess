@@ -5,10 +5,8 @@ import java.util.List;
 
 public class QueenPiece extends AbstractPiece{
 
-    private final int score = 9;
-
     public QueenPiece(Location location, PieceColor color) {
-        super(location, color);
+        super(location, color, 9);
     }
 
     @Override

@@ -154,7 +154,7 @@ public class Board {
 
 
 
-    public PieceColor whoIsWinning(){
+    public PieceColor hasMoreInfluence(){
         // go through every square, see which color it is and add the amount of legal moves to its total
         int blackPoints = 0;
         int whitePoints = 0;
@@ -180,6 +180,27 @@ public class Board {
                        }
                    }
                }
+            }
+        }
+        if(whitePoints == blackPoints) return null;
+        return whitePoints > blackPoints ? White : Black;
+    }
+
+    public PieceColor whoIsWinning(){
+        // go through every square, see which color it is and add its score to that color's total
+        int blackPoints = 0;
+        int whitePoints = 0;
+
+        for (int column = 0; column < COLUMNS; column++) {
+            for (int row = 0; row < ROWS; row++) {
+                AbstractPiece piece = squares[column][row].getPiece();
+                if (piece != null) {
+                    if (piece.getColor() == Black) {
+                        blackPoints += piece.getScore();
+                    } else {
+                        whitePoints += piece.getScore();
+                    }
+                }
             }
         }
         if(whitePoints == blackPoints) return null;

@@ -10,10 +10,8 @@ import java.util.List;
 
 public class PawnPiece extends AbstractPiece {
 
-    private final int score = 1;
-
     public PawnPiece(Location location, PieceColor color) {
-        super(location, color);
+        super(location, color, 1);
     }
 
     @Override
