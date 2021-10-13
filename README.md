@@ -16,5 +16,7 @@ Hadassah Rosenfeld
 Tali Benedek
 Leah Wolfish
 Rochel Munitz
+Eliana Gewirtz
+Jennifer Gerstle
 Ahuva Cheifetz
 
