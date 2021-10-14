@@ -10,6 +10,22 @@ import static org.junit.Assert.assertEquals;
 public class KingPieceTest {
 
     @Test
+    public void copy()
+    {
+        //given
+        Location location = new Location(3,4);
+        KingPiece king = new KingPiece(location, PieceColor.Black);
+
+        //when
+        KingPiece copy = (KingPiece)king.copy();
+
+        //then
+        assertEquals(king.getLocation().getColumn(), copy.getLocation().getColumn());
+        assertEquals(king.getLocation().getRow(), copy.getLocation().getRow());
+        assertEquals(king.getColor(), copy.getColor());
+    }
+
+    @Test
     public void getMoves() {
         //given
         Location startPosition = new Location(4,4);

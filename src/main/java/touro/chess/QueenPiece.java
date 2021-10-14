@@ -10,6 +10,12 @@ public class QueenPiece extends AbstractPiece{
     }
 
     @Override
+    public AbstractPiece copy()
+    {
+        return new QueenPiece(this.getLocation(), this.getColor());
+    }
+
+    @Override
     public List<Move> getMoves() {
         List<Move> moveList = new ArrayList<>();
         Location currentLocation = getLocation();

@@ -9,6 +9,21 @@ import static org.junit.Assert.assertTrue;
 
 public class RookPieceTest
 {
+    @Test
+    public void copy()
+    {
+        //given
+        Location location = new Location(3,4);
+        RookPiece rook = new RookPiece(location, PieceColor.Black);
+
+        //when
+        RookPiece copy = (RookPiece)rook.copy();
+
+        //then
+        assertEquals(rook.getLocation().getColumn(), copy.getLocation().getColumn());
+        assertEquals(rook.getLocation().getRow(), copy.getLocation().getRow());
+        assertEquals(rook.getColor(), copy.getColor());
+    }
 
     @Test
     public void getMoves00()

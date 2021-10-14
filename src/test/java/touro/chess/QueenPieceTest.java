@@ -6,6 +6,23 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class QueenPieceTest {
+
+    @Test
+    public void copy()
+    {
+        //given
+        Location location = new Location(3,4);
+        QueenPiece queen = new QueenPiece(location, PieceColor.Black);
+
+        //when
+        QueenPiece copy = (QueenPiece)queen.copy();
+
+        //then
+        assertEquals(queen.getLocation().getColumn(), copy.getLocation().getColumn());
+        assertEquals(queen.getLocation().getRow(), copy.getLocation().getRow());
+        assertEquals(queen.getColor(), copy.getColor());
+    }
+
     @Test
     public void getMoves() {
         //given

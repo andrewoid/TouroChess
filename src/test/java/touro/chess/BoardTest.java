@@ -4,8 +4,9 @@ package touro.chess;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import java.awt.*;
+
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
@@ -41,10 +42,6 @@ public class BoardTest {
         assertEquals(whiteKing.getClass(), KingPiece.class);
         assertNull(empty);
     }
-
-
-
-
 
     @Test
     public void isLegal_validVerticalMove(){
@@ -184,5 +181,108 @@ public class BoardTest {
         Assert.assertFalse(board.isLegal(move));
     }
 
+    @Test
+    public void equals_true()
+    {
+        //given
+        Board board = new Board();
+        board.setUpBoard();
+        Board board2 = new Board();
+        board2.setUpBoard();
+
+        //when
+        boolean same = board.equals(board);
+        boolean equals = board.equals(board2);
+
+        //then
+        assertTrue(same);
+        assertTrue(equals);
+    }
+
+    @Test
+    public void equals_false()
+    {
+        //given
+        Board board = new Board();
+        board.setUpBoard();
+        Board board2 = new Board();
+
+        //when
+        boolean equals = board.equals(board2);
+
+        //then
+        assertFalse(equals);
+    }
+
+    @Test
+    public void makeMove()
+    {
+        //given
+        Board board = new Board();
+        board.setUpBoard();
+        Location from = new Location(6,3);
+        Location to = new Location(5,3);
+        Square originalSquare = board.getSquare(from);
+        Square destinationSquare = board.getSquare(to);
+        AbstractPiece piece = originalSquare.getPiece();
+
+        //when
+        board.makeMove(new Move(from, to, false, false));
+
+        //then
+        assertNull(originalSquare.getPiece());
+        assertEquals(destinationSquare.getPiece(), piece);
+    }
+
+    @Test
+    public void copyBoard()
+    {
+        //given
+        Board board = new Board();
+        board.setUpBoard();
+
+        //when
+        Board copy = board.copyBoard();
+
+        //then
+        assertTrue(board.equals(copy));
+    }
+
+        @Test
+    public void isCheckmate_true()
+    {
+        //given
+        Board board = new Board();
+
+        Location kingsLocation = new Location(7,4);
+        KingPiece king = new KingPiece(kingsLocation, PieceColor.Black);
+        board.setPiece(kingsLocation, king);
+
+        Location queensLocation = new Location(7,3);
+        QueenPiece queen = new QueenPiece(queensLocation, PieceColor.White);
+        board.setPiece(queensLocation, queen);
+
+        //when
+        boolean checkmate = board.isCheckmate(PieceColor.Black);
+
+        //then
+        Assert.assertTrue(checkmate);
+    }
+
+    @Test
+    public void isCheckmate_false()
+    {
+        //given
+        Board board = new Board();
+        board.setUpBoard();
+
+        //when
+        boolean checkmateBlack = board.isCheckmate(PieceColor.Black);
+        boolean checkmateWhite = board.isCheckmate(PieceColor.White);
+
+        //then
+        Assert.assertFalse(checkmateBlack);
+        Assert.assertFalse(checkmateWhite);
+    }
 }
 

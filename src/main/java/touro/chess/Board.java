@@ -2,7 +2,7 @@ package touro.chess;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import java.util.*;
 
 import static touro.chess.PieceColor.Black;
 import static touro.chess.PieceColor.White;
@@ -146,6 +146,100 @@ public class Board {
                 return true;
             }
         }
+        return false;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o)
+        {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass())
+        {
+            return false;
+        }
+        Board board = (Board)o;
+        return Arrays.deepEquals(this.squares, board.squares);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Arrays.hashCode(squares);
+    }
+
+    public void makeMove(Move move)
+    {
+        if(isLegal(move))
+        {
+            Location from = move.getFrom();
+            Location destination = move.getTo();
+            Square currentSquare = getSquare(from);
+            Square destinationSquare = getSquare(destination);
+            AbstractPiece currentPiece = currentSquare.getPiece();
+            AbstractPiece destinationPiece = destinationSquare.getPiece();
+
+            currentSquare.setPiece(null);
+            currentPiece.setLocation(destination);
+            destinationSquare.setPiece(currentPiece);
+            if(destinationPiece != null)
+            {
+                destinationPiece.setLocation(null);
+            }
+        }
+    }
+
+    public Board copyBoard()
+    {
+        Board copy = new Board();
+        for (int column = 0; column < squares.length; column++)
+        {
+            for (int row = 0; row < squares[column].length; row++)
+            {
+                Square thisSquare = squares[column][row];
+                AbstractPiece thisPiece = thisSquare.getPiece();
+
+                Square copySquare = copy.squares[column][row];
+                AbstractPiece copyPiece = thisPiece == null ? null : thisPiece.copy();
+                copySquare.setPiece(copyPiece);
+            }
+        }
+        return copy;
+    }
+
+    public boolean isCheckmate(PieceColor color)
+    {
+        List<Move> moves = new ArrayList<>();
+        for (int column = 0; column < squares.length; column++)
+        {
+            for (int row = 0; row < squares[column].length; row++)
+            {
+                AbstractPiece currentPiece = squares[column][row].getPiece();
+                if(currentPiece != null && currentPiece.getColor() == color)
+                {
+                    moves.addAll(currentPiece.getMoves());
+                }
+            }
+        }
+        for(Move move: moves)
+        {
+            Board tempBoard = this.copyBoard();
+            if(isLegal(move))
+            {
+                tempBoard.makeMove(move);
+                if(!tempBoard.isCheck())
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isCheck()
+    {
         return false;
     }
 }

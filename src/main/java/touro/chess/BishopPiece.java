@@ -11,6 +11,12 @@ public class BishopPiece extends AbstractPiece
     }
 
     @Override
+    public AbstractPiece copy()
+    {
+        return new BishopPiece(this.getLocation(), this.getColor());
+    }
+
+    @Override
     public List<Move> getMoves()
     {
         List<Move> moves = new ArrayList<>();

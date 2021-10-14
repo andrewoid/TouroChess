@@ -10,6 +10,12 @@ public class KnightPiece extends AbstractPiece {
     }
 
     @Override
+    public AbstractPiece copy()
+    {
+        return new KnightPiece(this.getLocation(), this.getColor());
+    }
+
+    @Override
     public List<Move> getMoves() {
         Location currentLocation = getLocation();
         int row = currentLocation.getRow();

@@ -8,6 +8,21 @@ import static org.junit.Assert.assertEquals;
 
 public class PawnPieceTest {
 
+    @Test
+    public void copy()
+    {
+        //given
+        Location location = new Location(3,4);
+        PawnPiece pawn = new PawnPiece(location, PieceColor.Black);
+
+        //when
+        PawnPiece copy = (PawnPiece)pawn.copy();
+
+        //then
+        assertEquals(pawn.getLocation().getColumn(), copy.getLocation().getColumn());
+        assertEquals(pawn.getLocation().getRow(), copy.getLocation().getRow());
+        assertEquals(pawn.getColor(), copy.getColor());
+    }
 
     @Test
     public void getMovesBlack() {
