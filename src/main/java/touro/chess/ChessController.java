@@ -11,7 +11,7 @@ public class ChessController {
     ArrayList<Label> squares;
 
     public void initialize() {
-        squares = new ArrayList<>();
+        // squares = new ArrayList<>();
         setupInitialBoard();
     }
 
@@ -25,11 +25,11 @@ public class ChessController {
         squares.get(6).getStyleClass().add("BlackKnight");
         squares.get(7).getStyleClass().add("BlackRook");
 
-        for (int sq = 8; sq <= 15; sq++){
+        for (int sq = 8; sq <= 15; sq++) {
             squares.get(sq).getStyleClass().add("BlackPawn");
         }
 
-        for (int sq = 48; sq <= 55; sq++){
+        for (int sq = 48; sq <= 55; sq++) {
             squares.get(sq).getStyleClass().add("WhitePawn");
         }
 
@@ -43,25 +43,32 @@ public class ChessController {
         squares.get(63).getStyleClass().add("WhiteRook");
     }
 
-    public void updateImage(PieceColor color, int originSquare, int destinationSquare, Piece piece){
-        String movingPiece = color.toString() + "" + piece.toString();
-        squares.get(originSquare).getStyleClass().remove(movingPiece);
-        squares.get(originSquare).getStyleClass().add("Empty");
-        squares.get(destinationSquare).getStyleClass().removeAll();
-        squares.get(destinationSquare).getStyleClass().add(movingPiece);
+    public void updateImage(PieceColor color, int originSquare, int destinationSquare, Piece piece) {
+        String movingPiece = color.toString() + piece.toString();
+        squares.get(originSquare).setStyle("Empty");
+        //squares.get(originSquare).getStyleClass().add("Empty");
+//        squares.get(destinationSquare).getStyleClass().removeAll();
+        squares.get(destinationSquare).setStyle(movingPiece);
     }
 
-    public int convertOrigin (Move move){
-        return move.getFrom().getRow() * 8 + move.getFrom().getColumn();
+    public void updateMoveImage(PieceColor color, Move move, Piece piece) {
+        int numOriginSquare = move.getFrom().getRow() * 8 + move.getFrom().getColumn();
+        int numDestinationSSquare = move.getTo().getRow() * 8 + move.getTo().getColumn();
+        updateImage(color, numOriginSquare, numDestinationSSquare, piece);
     }
-
-    public int convertDestination (Move move){
-        return move.getTo().getRow() * 8 + move.getTo().getColumn();
-
-    }
-    public void updateMoveImage(PieceColor color, Move move, Piece piece){
-        updateImage(color, convertOrigin(move), convertDestination(move), piece);
-    }
+}
+//
+//    public int convertOrigin (Move move){
+//        return move.getFrom().getRow() * 8 + move.getFrom().getColumn();
+//    }
+//
+//    public int convertDestination (Move move){
+//        return move.getTo().getRow() * 8 + move.getTo().getColumn();
+//
+//    }
+//    public void updateMoveImage(PieceColor color, Move move, Piece piece){
+//        updateImage(color, convertOrigin(move), convertDestination(move), piece);
+//    }
 
 //private void updateImage(PieceColor color, Move move, Piece piece){
 //        int numOriginSquare = move.getFrom().getRow() * 8 + move.getFrom().getColumn();
@@ -73,13 +80,3 @@ public class ChessController {
 //        squares.get(numDestinationSSquare).getStyleClass().removeAll();
 //        squares.get(numDestinationSSquare).getStyleClass().add(movingPiece);
 //}
-
-    public enum Piece {
-        Rook,
-        Knight,
-        Bishop,
-        Queen,
-        King,
-        Pawn
-    }
-}
