@@ -1,9 +1,10 @@
 package touro.chess;
 
-import junit.framework.TestCase;
-import java.util.Stack;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-public class UndoManagerTest extends TestCase {
+public class UndoManagerTest{
     private Board currentBoard;
     private UndoManager undoManager;
     private Location from, to;
@@ -13,7 +14,8 @@ public class UndoManagerTest extends TestCase {
     //private Stack<MoveInfo> executedMoves;
 
     //test without captured piece
-    public void testTrackMove() {
+    @Test
+    public void trackMove() {
         //given
         givenUndoManager();
         capturedPiece = null;
@@ -27,8 +29,10 @@ public class UndoManagerTest extends TestCase {
         assertNull(latestMoveInfo.getCapturedPiece());
 
     }
+
     //test with captured piece
-    public void testTestTrackMoveWithCapture() {
+    @Test
+    public void trackMoveWithCapture() {
         givenUndoManager();
         capturedPiece = new PawnPiece(to,PieceColor.White);
 
@@ -44,7 +48,8 @@ public class UndoManagerTest extends TestCase {
 
     //why is board null?
     //without captured piece
-    public void testUndoMove() {
+    @Test
+    public void undoMove() {
         //given
         givenUndoManager();
         latestMoveInfo = new MoveInfo (latestMove,null);
@@ -67,8 +72,10 @@ public class UndoManagerTest extends TestCase {
 
 
     }
+
     //with captured piece
-    public void testUndoMoveWithCapture() {
+    @Test
+    public void undoMoveWithCapture() {
         //given
 
         //when
@@ -84,13 +91,14 @@ public class UndoManagerTest extends TestCase {
         //board.setPiece is called correctly
     }
 
+    @Test
     public void givenUndoManager(){
-    Board currentBoard = new Board();
-    //currentBoard.setUpBoard();
-    undoManager = new UndoManager(currentBoard);
-    from = new Location(1,4);
-    to = new Location(1,5);
-    latestMove = new Move(from,to,false);
-    //executedMoves = new Stack<>();
+        Board currentBoard = new Board();
+        //currentBoard.setUpBoard();
+        undoManager = new UndoManager(currentBoard);
+        from = new Location(1,4);
+        to = new Location(1,5);
+        latestMove = new Move(from,to,false);
+        //executedMoves = new Stack<>();
     }
 }

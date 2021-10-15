@@ -1,45 +1,23 @@
 package touro.chess;
 import java.util.Stack;
-/*
-    TO DO:
-    fix naming?
-    private class within public?
-    testing issues
-    other scenarios? if a piece is changed? don't know chess well enough...
 
- */
 public class UndoManager {
     private Board board;
     private Stack<MoveInfo> executedMoves;
-    private MoveInfo latestMoveInfo; //better like this or go back?
+    private MoveInfo latestMoveInfo;
 
     public UndoManager (Board currentBoard ){
         board = currentBoard;
         executedMoves = new Stack<>();
     }
+
     public Board getBoard(){ //remove?
         return board;
     }
+
     public Stack<MoveInfo> getExecutedMoves(){
         return executedMoves;
     }
-
-   /* public class MoveInfo{  //public class within a class?
-        private Move move;
-        private AbstractPiece capturedPiece;
-        private MoveInfo(Move move, AbstractPiece capturedPiece){
-            this.move = move;
-            this.capturedPiece = capturedPiece;
-        }
-        //getters and setters?
-        public Move getMove(){
-            return this.move;
-        }
-        public AbstractPiece getCapturedPiece(){
-            return this.capturedPiece;
-        }
-    }
-    */
 
     /**
      * method to track move played
