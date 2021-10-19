@@ -28,6 +28,8 @@ public class Board {
 
     /**
      * Sets up the board at the beginning of the game
+     * Black is rows 0-1 and White is rows 6-7
+     *
      */
 
     public void setUpBoard()
@@ -35,13 +37,13 @@ public class Board {
         //pawns
         for(int column = 0; column < COLUMNS; column++)
         {
-            int rowWhite = 1;
-            int rowBlack = 6;
+            int rowWhite = 6;
+            int rowBlack = 1;
             squares[column][rowWhite].setPiece(new PawnPiece(new Location(rowWhite, column), White));
             squares[column][rowBlack].setPiece(new PawnPiece(new Location(rowBlack, column), Black));
         }
-        int rowWhite = 0;
-        int rowBlack = 7;
+        int rowWhite = 7;
+        int rowBlack = 0;
         //rooks
         squares[0][rowWhite].setPiece(new RookPiece(new Location(rowWhite, 0), White));
         squares[7][rowWhite].setPiece(new RookPiece(new Location(rowWhite, 7), White));
@@ -147,5 +149,35 @@ public class Board {
             }
         }
         return false;
+    }
+
+    /**
+     * method detects if it is a check for the king piece that is being passed
+     * @param king
+     * @return true or alse
+     */
+    public boolean isCheck(KingPiece king)
+    {
+        Location kingLocation = king.getLocation();
+        PieceColor kingColor = king.getColor();
+        for (int column = 0; column < squares.length; column++) {
+            for (int row = 0; row < squares[column].length; row++) {
+                Square thisSquare = squares[column][row];
+                if (thisSquare.hasPiece() && (thisSquare.getPiece().getColor() != kingColor)) {
+                    List<Move> moves = thisSquare.getPiece().getMoves();
+                    for (Move move : moves)
+                    {
+                        if (isLegal(move) &&
+                                move.getTo().getColumn() == kingLocation.getColumn() &&
+                                move.getTo().getRow() == kingLocation.getRow())
+                        {
+                            return true;
+                        }
+                    }
+
+                }
+            }
+        }
+      return false;
     }
 }
