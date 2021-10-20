@@ -23,14 +23,14 @@ public class KingPieceTest {
         practiceList.add(new Move(startPosition,new Location(3,3),false));
         practiceList.add(new Move(startPosition,new Location(5,5),false));
         practiceList.add(new Move(startPosition,new Location(3,5),false));
+        //castle moves
+        practiceList.add(new Move(startPosition,new Location(2, 4),false));
+        practiceList.add(new Move(startPosition,new Location(6, 4),false));
 
         //when
         List<Move> legalMoves = king.getMoves();
 
         //then
-        for (int i = 0; i<=7; i++){
-            assertEquals(legalMoves.get(i).getTo().getColumn(),practiceList.get(i).getTo().getColumn());
-            assertEquals(legalMoves.get(i).getTo().getRow(),practiceList.get(i).getTo().getRow());
-        }
+        assertEquals(legalMoves, practiceList);
     }
 }

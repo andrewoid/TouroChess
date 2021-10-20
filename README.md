@@ -9,9 +9,14 @@ Possible moves should be highlighted.
 This is a guide for [Chess for beginners](https://www.wikihow.com/Play-Chess-for-Beginners)
 
 #### Contributors
-
-Andrew Schwimmer  
-Leah Wolfish  
+Andrew Schwimmer
+Sara Croitoru
+Hadassah Rosenfeld
+Tali Benedek
+Leah Wolfish
+Talia Yahav
+Eliana Gewirtz
+Jennifer Gerstle
+Ahuva Cheifetz
 Rochel Munitz
 
-  
