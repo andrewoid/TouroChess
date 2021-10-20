@@ -16,6 +16,7 @@ Tali Benedek
 Leah Wolfish
 Sara Croitoru
 Hadassah Rosenfeld
+Talia Yahav
 Eliana Gewirtz
 Jennifer Gerstle
 Ahuva Cheifetz
