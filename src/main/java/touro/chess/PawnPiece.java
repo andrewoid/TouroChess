@@ -24,7 +24,7 @@ public class PawnPiece extends AbstractPiece {
 
         int movement;
         int startingRow;
-        int neverRow;
+        int endRow;
 
         // Black movement = 1, white = -1
         //starting row black = 1 and white = 6
@@ -33,11 +33,11 @@ public class PawnPiece extends AbstractPiece {
         if (getColor() == PieceColor.Black) {
             movement = 1;
             startingRow = 1;
-            neverRow = 7;
+            endRow = 7;
         } else {
             movement = -1;
             startingRow = 6;
-            neverRow = 0;
+            endRow = 0;
         }
 
         //if this is first move
@@ -46,7 +46,7 @@ public class PawnPiece extends AbstractPiece {
         }
 
         //move forward
-        if (row != neverRow) {
+        if (row != endRow) {
             moves.add(new Move(location, new Location(row + movement, col), false, false));
 
             //move to the left
@@ -59,6 +59,13 @@ public class PawnPiece extends AbstractPiece {
                 moves.add(new Move(location, new Location(row + movement, col - 1), false, true));
             }
         }
+
+        if (row == endRow)
+        {
+            QueenPiece queen = new QueenPiece(this.getLocation(), this.getColor());
+            moves = queen.getMoves();
+        }
+
         return moves;
     }
 
