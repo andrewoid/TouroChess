@@ -11,11 +11,13 @@ This is a guide for [Chess for beginners](https://www.wikihow.com/Play-Chess-for
 #### Contributors
 
 Andrew Schwimmer
-Sara Croitoru
-Hadassah Rosenfeld
+Nina Bildirici
 Tali Benedek
 Leah Wolfish
+Sara Croitoru
+Hadassah Rosenfeld
 Talia Yahav
 Eliana Gewirtz
 Jennifer Gerstle
 Ahuva Cheifetz
+

@@ -1,10 +1,9 @@
 package touro.chess;
 
 import org.junit.Test;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
+
 
 public class PawnPieceTest {
 
@@ -228,13 +227,13 @@ public class PawnPieceTest {
     public void getMovesBlackLastRow() {
 
         // given
-        PawnPiece piece = new PawnPiece(new Location(7, 5), PieceColor.Black);
+        PawnPiece piece = new PawnPiece(new Location(7, 3), PieceColor.Black);
 
         // when
         List<Move> moves = piece.getMoves();
 
         // then
-        assertEquals(0, moves.size());
+        assertEquals(23, moves.size());
     }
 
     @Test
@@ -247,7 +246,7 @@ public class PawnPieceTest {
         List<Move> moves = piece.getMoves();
 
         // then
-        assertEquals(0, moves.size());
+        assertEquals(23, moves.size());
     }
 
 }
