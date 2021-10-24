@@ -51,25 +51,24 @@ public class PawnPiece extends AbstractPiece {
 
             //move to the left
             if (col != 7) {
-                moves.add(new Move(location, new Location(row + movement, col + 1)));
+                moves.add(new PawnCaptureMove(location, new Location(row + movement, col + 1)));
             }
 
             //move to the right
             if (col != 0) {
-                moves.add(new Move(location, new Location(row + movement, col - 1)));
+                moves.add(new PawnCaptureMove(location, new Location(row + movement, col - 1)));
             }
         }
 
-        if (row == endRow)
-        {
+        if (row == endRow) {
             QueenPiece queen = new QueenPiece(this.getLocation(), this.getColor());
+            Square square = new Square(location);
+            square.setPiece(queen);
             moves = queen.getMoves();
         }
 
         return moves;
     }
-
-
 
 
 }
