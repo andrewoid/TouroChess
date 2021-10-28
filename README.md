@@ -18,4 +18,3 @@ Leah Wolfish
 Talia Yahav
 Eliana Gewirtz
 Jennifer Gerstle
-Ahuva Cheifetz

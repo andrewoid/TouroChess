@@ -2,8 +2,9 @@ package touro.chess;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
+import javafx.scene.layout.GridPane;
 import java.util.ArrayList;
+
 
 public class ChessController {
 
