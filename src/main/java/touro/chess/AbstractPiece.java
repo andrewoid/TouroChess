@@ -10,6 +10,9 @@ public abstract class AbstractPiece {
     private Location location;
     private final PieceColor color;
     private final int score;
+    private boolean moved = false;
+
+
     // How should we represent the piece's image?
 
     public AbstractPiece(Location location, PieceColor color, int score) {
@@ -24,13 +27,18 @@ public abstract class AbstractPiece {
 
     public void setLocation(Location location) {
         this.location = location;
+        moved = true;
     }
 
     public PieceColor getColor() {
         return color;
     }
 
+
     public int getScore(){return score;}
+    public boolean hasMoved(){
+        return moved;
+    }
 
     /**
      * @return a List of all valid moves that this piece can make from this position.
