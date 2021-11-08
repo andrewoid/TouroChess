@@ -184,5 +184,75 @@ public class BoardTest {
         Assert.assertFalse(board.isLegal(move));
     }
 
+    @Test
+    public void whoIsWinning_tie(){
+        //given
+        Board board = new Board();
+        //when
+        PieceColor winner = board.whoIsWinning();
+        //then
+        assertEquals(winner, null);
+    }
+
+    @Test
+    public void whoIsWinning_blackWins(){
+        //given
+        Board board = new Board();
+        Location location = new Location(3, 5);
+        PawnPiece pawn = new PawnPiece(location, PieceColor.Black);
+        board.setPiece(location, pawn);
+        //when
+        PieceColor winner = board.whoIsWinning();
+        //then
+        assertEquals(winner, PieceColor.Black);
+    }
+    @Test
+    public void whoIsWinning_whiteWins(){
+        //given
+        Board board = new Board();
+        Location location = new Location(3, 5);
+        PawnPiece pawn = new PawnPiece(location, PieceColor.White);
+        board.setPiece(location, pawn);
+        //when
+        PieceColor winner = board.whoIsWinning();
+        //then
+        assertEquals(winner, PieceColor.White);
+    }
+
+    @Test
+    public void hasMoreInfluence_tie(){
+        //given
+        Board board = new Board();
+        //when
+        PieceColor winner = board.whoIsWinning();
+        //then
+        assertEquals(winner, null);
+    }
+
+    @Test
+    public void hasMoreInfluence_blackWins(){
+        //given
+        Board board = new Board();
+        Location location = new Location(3, 5);
+        PawnPiece pawn = new PawnPiece(location, PieceColor.Black);
+        board.setPiece(location, pawn);
+        //when
+        PieceColor winner = board.whoIsWinning();
+        //then
+        assertEquals(winner, PieceColor.Black);
+    }
+    @Test
+    public void hasMoreInfluence_whiteWins(){
+        //given
+        Board board = new Board();
+        Location location = new Location(3, 5);
+        PawnPiece pawn = new PawnPiece(location, PieceColor.White);
+        board.setPiece(location, pawn);
+        //when
+        PieceColor winner = board.whoIsWinning();
+        //then
+        assertEquals(winner, PieceColor.White);
+    }
+
 }
 

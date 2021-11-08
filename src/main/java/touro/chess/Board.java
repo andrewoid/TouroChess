@@ -1,6 +1,10 @@
 package touro.chess;
 
+import javafx.scene.control.Label;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static touro.chess.PieceColor.Black;
 import static touro.chess.PieceColor.White;
@@ -88,6 +92,7 @@ public class Board {
     public void setPiece(Location location, AbstractPiece piece) {
         squares[location.getColumn()][location.getRow()].setPiece(piece);
     }
+
 
 
     /**
@@ -186,5 +191,60 @@ public class Board {
             }
         }
         return false;
+    }
+
+
+
+    public PieceColor hasMoreInfluence(){
+        // go through every square, see which color it is and add the amount of legal moves to its total
+        int blackPoints = 0;
+        int whitePoints = 0;
+
+        for (int column = 0; column < COLUMNS; column++) {
+            for (int row = 0; row < ROWS; row++) {
+               AbstractPiece piece =  squares[column][row].getPiece();
+               if(piece != null){
+                   if(piece.getColor() == Black){
+                       List<Move> blackMoves = piece.getMoves();
+                       for(Move move : blackMoves){
+                           if(isLegal(move)){
+                               blackPoints++;
+                           }
+                       }
+                   }
+                   else{
+                       List<Move> whiteMoves = piece.getMoves();
+                       for(Move move : whiteMoves){
+                           if(isLegal(move)){
+                               whitePoints++;
+                           }
+                       }
+                   }
+               }
+            }
+        }
+        if(whitePoints == blackPoints) return null;
+        return whitePoints > blackPoints ? White : Black;
+    }
+
+    public PieceColor whoIsWinning(){
+        // go through every square, see which color it is and add its score to that color's total
+        int blackPoints = 0;
+        int whitePoints = 0;
+
+        for (int column = 0; column < COLUMNS; column++) {
+            for (int row = 0; row < ROWS; row++) {
+                AbstractPiece piece = squares[column][row].getPiece();
+                if (piece != null) {
+                    if (piece.getColor() == Black) {
+                        blackPoints += piece.getScore();
+                    } else {
+                        whitePoints += piece.getScore();
+                    }
+                }
+            }
+        }
+        if(whitePoints == blackPoints) return null;
+        return whitePoints > blackPoints ? White : Black;
     }
 }

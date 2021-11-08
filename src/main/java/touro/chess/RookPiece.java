@@ -5,9 +5,10 @@ import java.util.List;
 
 public class RookPiece extends AbstractPiece
 {
+
     public RookPiece(Location location, PieceColor color)
     {
-        super(location, color);
+        super(location, color, 5);
     }
 
     @Override

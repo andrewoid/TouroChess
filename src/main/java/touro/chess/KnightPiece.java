@@ -6,7 +6,7 @@ import java.util.List;
 public class KnightPiece extends AbstractPiece {
 
     public KnightPiece(Location location, PieceColor color) {
-        super(location, color);
+        super(location, color, 3);
     }
 
     @Override
